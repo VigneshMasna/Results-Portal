@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XYZ Student Results</title>
+    <link rel="stylesheet" href="restyles.css">
+</head>
+<body>
+    <div id=container class="container">
+        <header>
+            <img src="logo.png" alt="XYZ Logo" class="logo">
+            <h1>XYZ Engineering College</h1>
+            <h2>(An Autonomous Institution)</h2>
+        </header>
+    </div>
+
+    <center>
+        <h3>Roll Number: <%= data._id %></h3>
+        <h3>Name: <%= data.name %></h3>
+        <h3>Branch: <%= data.branch %></h3>
+        <h3><%= semester %> Result</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Subject Code</th>
+                    <th>Subject Name</th>
+                    <th>Final Grade</th>
+                    <th>Credits</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% sem.forEach(function(subject) { %> 
+                    <tr>
+                        <td><%= subject.Sno %></td>
+                        <td><%= subject.SubCode %></td>
+                        <td class="subname"><%= subject.SubjectName %></td>
+                        <td class="grade"><%= subject.FinalGrade %></td>
+                        <td class="credits"><%= subject.Credits %></td>
+                        <% if(subject.FinalGrade === "F") { %>
+                            <td><%= "Fail" %></td>
+                        <% } else { %>
+                            <td><%= "Pass" %></td>
+                        <% } %>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <h4>SGPA: <span id="sgpa">"NA"</span></h4>
+    </center>
+
+    <div class="footer">
+        <p>&copy; 2025 XYZ Engineering College. All Rights Reserved.</p>
+    </div>
+
+    <script>
+        const hash = {
+            "A+": 10,
+            "A": 9,
+            "B": 8,
+            "C": 7,
+            "D": 6,
+            "E": 5,
+            "F": 0
+        };
+
+        let gpa = 0;        // Total grade points
+        let tcredits = 0;   // Total credits
+
+        const grades = document.querySelectorAll('.grade');    // Select grade cells
+        const credits = document.querySelectorAll('.credits'); // Select credit cells
+
+        grades.forEach((grade, index) => {
+            const gradeValue = grade.innerText.trim();         // Grade string (e.g., "A+")
+            const creditValue = parseFloat(credits[index].innerText.trim()); // Convert credit to number
+
+            if (gradeValue === "F") {
+                gpa = 0; // Fail condition: SGPA = 0
+                tcredits = 0;
+                return;
+            }
+
+            gpa += hash[gradeValue] * creditValue; // Weighted grade points
+            tcredits += creditValue;              // Accumulate credits
+        });
+
+        if (tcredits > 0) {
+            const sgpa = (gpa / tcredits).toFixed(2); // Calculate SGPA (rounded to 2 decimals)
+            document.getElementById("sgpa").innerText = sgpa;
+        } else {
+            document.getElementById("sgpa").innerText = "NA"; // Handle no credits or failure
+        }
+    </script>
+</body>
+</html>
