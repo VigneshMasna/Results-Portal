@@ -39,7 +39,9 @@ Ensure you have the following installed:
 
 ### Setting up MongoDB Atlas
 - Register at MongoDB Atlas.
--  Create a new cluster.
+- Create a new cluster.
+- Create a new database ("results_portal").
+- Create a new collection ("results").
 - Navigate to Network Access and Add Your IP Address to allow access.
 - Get the MongoDB connection string from the database section.
 
@@ -92,3 +94,12 @@ cd results-portal
 
 - **Input Validation**:
   - Sanitize user inputs to prevent injection attacks.
+
+## Home Page
+![image](https://github.com/user-attachments/assets/0deb8509-cc30-4ff4-aeee-37319beae259)
+## Admin Page
+![image](https://github.com/user-attachments/assets/2c1bf75e-8aea-49f7-9e1b-6b17bb239cfa)
+## Results Page
+![image](https://github.com/user-attachments/assets/275f1afd-ffbc-4152-9a6f-5d706444f29e)
+
+
