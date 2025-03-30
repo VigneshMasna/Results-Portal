@@ -37,7 +37,7 @@ function authenticate(req, res, next) {
     const credentials = Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
     const [username, password] = credentials;
 
-    if (username === 'mvsr' && password === 'mvsr') {
+    if (username === 'admin' && password === 'admin') {
         next(); // Proceed to the next middleware/route handler
     } else {
         res.setHeader('WWW-Authenticate', 'Basic');
