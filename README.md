@@ -28,7 +28,6 @@ results-portal/
 │   ├── admin.ejs
 │   ├── view.ejs
 │── index.js
-│── package.json
 │── README.md
 ```
 
