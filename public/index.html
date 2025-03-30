@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF=8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>XYZ Results</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <img src="logo.png" alt="XYZ Logo" class="logo">
+                <h1>XYZ Engineering College</h1>
+                <h2>(An Autonomous Institution)</h2>
+            </header>
+        </div>
+        <div class="marks-memo">
+            <center>
+                <h2>Marks Memo</h2>
+                <form action="/submit" method="get">
+                    <input type="text" id="roll-number" name="rollnumber" placeholder="Roll Number" required>
+                    <select id="sem" name="sem" required>
+                        <option value="" disabled selected>Choose Semester</option>
+                        <option value="SEM-1">Sem 1</option>
+                        <option value="SEM-2">Sem 2</option>
+                        <option value="SEM-3">Sem 3</option>
+                        <option value="SEM-4">Sem 4</option>
+                        <option value="SEM-5">Sem 5</option>
+                        <option value="SEM-6">Sem 6</option>
+                        <option value="SEM-7">Sem 7</option>
+                        <option value="SEM-8">Sem 8</option>
+                    </select>
+                    <br>
+                    <button type="submit">Submit</button>
+                    <br>
+                    <h5 id="notFound" style="color: red; visibility: hidden">No Result Found!!!</h5>
+                </form>
+
+                <!-- New Section for Admin Access -->
+                <br>
+                <button id="adminBtn">Admin Login</button>
+            </center>
+        </div>
+        <br>
+        <div class="footer">
+            <p>&copy; 2025 XYZ Engineering College. All Rights Reserved.</p>
+        </div>
+
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            const status = params.get('status');
+            const notFoundMessage = document.getElementById("notFound");
+        
+            if (status === "-1") {
+                notFoundMessage.style.visibility = "visible";
+            } else {
+                notFoundMessage.style.visibility = "hidden";
+            }
+
+            // Redirect to Admin Page on Button Click
+            document.getElementById("adminBtn").addEventListener("click", () => {
+                window.location.href = "/admin";
+            });
+        </script>        
+    </body>
+</html>
